@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import QuizQuestion from './QuizQuestion.js'
 import QuizEnd from './QuizEnd.js'
 
-let quizData = require('./quiz_data.json')
-
 class Quiz extends Component {
   constructor(props) {
     super(props)
@@ -24,8 +22,8 @@ class Quiz extends Component {
   }
 
   render() {
-    const isQuizEnd = (this.state.quiz_position - 1) === quizData.quiz_questions.length
-
+    const quizData = this.props.data
+    const isQuizEnd = (this.state.quiz_position - 1) === (quizData && quizData.length || 0)
     return (
       <div>
         { isQuizEnd ?
@@ -34,7 +32,7 @@ class Quiz extends Component {
         />:
         (<QuizQuestion
           showNextQuestionHandler={this.showNextQuestion.bind(this)}
-          quiz_question={quizData.quiz_questions[this.state.quiz_position - 1]}
+          quiz_question={quizData && quizData[this.state.quiz_position - 1]}
         />)
         }
       </div>
