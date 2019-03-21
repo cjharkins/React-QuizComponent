@@ -5,6 +5,12 @@ class QuizQuestion extends Component {
   constructor(props) {
     super(props)
   }
+
+  handleClick(button_text) {
+    button_text === this.props.quiz_question.answer ?
+      this.props.showNextQuestionHandler():null
+  }
+
   render() {
     return (
       <main>
@@ -13,7 +19,13 @@ class QuizQuestion extends Component {
         </section>
         <section className="buttons">
           <ul>
-            <QuizQuestionButton button_text={this.props.quiz_question.answer_options[0]} />
+            {this.props.quiz_question.answer_options.map((i,n)=>
+              (<QuizQuestionButton
+                clickHandler={this.handleClick.bind(this)}
+                key={n}
+                button_text={i}
+              />)
+            )}
           </ul>
         </section>
       </main>
