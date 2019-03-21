@@ -13,7 +13,7 @@ class Quiz extends Component {
   render() {
     const { instruction_text } =
       quizData.quiz_questions &&
-      quizData.quiz_questions[this.state.quiz_position]
+      quizData.quiz_questions[0]
 
     return (
       <div>
